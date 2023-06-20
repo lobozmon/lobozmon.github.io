@@ -6,25 +6,23 @@
     <link rel = "stylesheet" href="style.css"/>
     <title>Barcodes</title>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
-    <script>
-        function generateBarcode (value){
-            JsBarcode('#barcode',value, {
-                format: 'code128',
-                displayValue: true,
-            });
-        }
-    </script>
+    <script src="script.js"></script>
+      
 </head>
 <body>
     <div class="container">
         <h1 class="center-text">Barcode Generator</h1>
         <div class="center-div">
             <label>Barcode: </label>
-            <input name="barcode" type="text" onchange="generateBarcode(this.value)" />
+            <div id="barcode-container">
+                <input name="barcode" type="text" onchange="generateBarcode(this.value)" />
+                <button id="save-button">Save</button>
+            </div>
         </div>
         <div class="center-div">
             <svg id="barcode"></svg>
         </div>
+          
     </div>
 </body>
 </html>
