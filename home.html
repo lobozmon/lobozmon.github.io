@@ -14,13 +14,14 @@
         <h1 class="center-text">Barcode Generator</h1>
         <div class="center-div">
             <label>Barcode: </label>
-            <div id="barcode-container">
-                <input name="barcode" type="text" onchange="generateBarcode(this.value)" />
-                <button id="save-button">Save</button>
+            <div id="barcode-container" class="barcode-container">
+                <input name="barcode-input" type="text" onchange="generateBarcode(this.value)" />
+                <button class="button" id="button">Generate</button>
+                <a href="" class="save-button" id="save-button" download="image.png">Save</a>
             </div>
         </div>
         <div class="center-div">
-            <svg id="barcode"></svg>
+            <svg id="barcode" xmlns="http://www.w3.org/2000/svg"></svg>
         </div>
           
     </div>
