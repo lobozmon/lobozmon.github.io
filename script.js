@@ -1,3 +1,5 @@
+var saveButton = document.getElementById('save-button');
+
 function generateBarcode(value) {
     console.log('Generating barcode:', value);
     JsBarcode('#barcode', value, {
@@ -8,28 +10,42 @@ function generateBarcode(value) {
     });
 }
 
-document.getElementById('button').addEventListener('click', function() {
+function convertSvgToImage(callback) {
+    const svgElement = document.getElementById('barcode');
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+
+    const svgString = new XMLSerializer().serializeToString(svgElement);
+    const image = new Image();
+
+    image.onload = function () {
+        canvas.width = image.width;
+        canvas.height = image.height;
+        context.drawImage(image, 0, 0);
+
+        const dataUrl = canvas.toDataURL('image/png');
+
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = 'image.png';
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+  };
+
+  image.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgString)));
+}
+
+function generateBarcodeFromInput() {
     var inputValue = document.getElementsByName('barcode-input')[0].value;
     generateBarcode(inputValue);
-});
-
-document.getElementById('save-button').addEventListener('click', function() {
-    const svg = document.getElementById('barcode');
-    const { x, y, width, height } = svg.viewBox.baseVal;
-    const blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
-    const url = URL.createObjectURL(blob);
-    const image = new Image();
-    image.src = url;
-    image.addEventListener('load', () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = width;
-      canvas.height = height;
-      const context = canvas.getContext('2d');
-      context.drawImage(image, x, y, width, height);
-      const link = document.createElement('a');
-      link.href = canvas.toDataURL();
-      link.download = 'image.png';
-      link.click();
-      URL.revokeObjectURL(url);
-    });
-  });
+    console.log('click click');
+  }
+  
+    
+function saveButtonClick(event) {
+    event.preventDefault();
+    console.log('click click');
+    convertSvgToImage();
+  }
