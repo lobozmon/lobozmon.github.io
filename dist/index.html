@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href="style.css"/>
+    <title>Barcodes</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+ 
+</head>
+<body>
+    <div class="container">
+        <div id="clouds">
+            <div class="cloud x1"></div>
+            <div class="cloud x2"></div>
+            <div class="cloud x3"></div>
+            <div class="cloud x4"></div>
+            <div class="cloud x5"></div>
+        </div>
+        <h1 class="center-text">Barcode Generator</h1>
+        <div class="center-div">
+            <label id="label">Barcode: </label>
+            <div id="barcode-menu" class="barcode-menu">
+                <input class="barcode-input" name="barcode-input" type="text" placeholder="Write here..."  />
+                <button class="button" id="button">Generate</button>
+                <a href="" class="save-button" id="save-button" download="image.png">Save</a>
+            </div>
+        </div>
+        <div class="center-div-barcode">
+            <svg id="barcode" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        <div class="center-div-img">
+            <img id="converted_image" src="" alt="Converted image">
+        </div>
+          
+    </div>
+    <script src="bundle.js"></script>
+</body>
+</html>
