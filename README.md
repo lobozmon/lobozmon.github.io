@@ -1,1 +1,1 @@
-# Proejkt Barcodes
+# Projekt Barcodes
